@@ -70,11 +70,11 @@
 
     var labels = ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10'];
 
-    function tooltip_constructer(d, i){
+    function tooltip_constructer(labelsData, d, i){
   		var row_number = i % labels.length
   		var column_number =  parseInt(i / labels.length)
   		if(row_number>=column_number) return null
-  		return data[row_number][column_number] + ' (' + labelsData[column_number] + ' - ' + labelsData[row_number] + ')'
+  		return d + ' (' + labelsData[column_number] + ' - ' + labelsData[row_number] + ')'
   	}
 
     Matrix({

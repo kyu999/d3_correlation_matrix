@@ -3,7 +3,7 @@ function Matrix(options) {
 	    width = options.width,
 	    height = options.height,
       tooltip_canvas_selector = options.tooltip_canvas_selector,
-      tooltip_constructer = options.tooltip_constructer
+      tooltip_constructer = options.tooltip_constructer,
 	    data = options.data,
 	    container = options.container,
 	    labelsData = options.labels,
@@ -70,7 +70,7 @@ function Matrix(options) {
 			.on("mouseover", function(d, i) {
 				tooltip
 				  .style("visibility", "visible")
-					.html(tooltip_constructer(d, i))
+					.html(tooltip_constructer(labelsData, d, i))
 			})
 			.on("mousemove", function(d, i) {
 				var xPos = d3.event.pageX - 20
