@@ -1,5 +1,7 @@
 # D3 Correlation Matrix
 
+<img src="sample_matrix.png">
+
 ### Installation
 
 ##### CDN
