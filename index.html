@@ -1,0 +1,94 @@
+<html>
+  <head>
+    <title>Oligoset</title>
+    <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Google Fonts -->
+    <link href='https://fonts.googleapis.com/css?family=Oswald:300,400' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700' rel='stylesheet' type='text/css'>
+
+    <!-- D3 -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script type="text/javascript" src="d3.layout.js"></script>
+    <script src="d3.matrix.js"></script>
+    <style>
+    .tooltip {
+      position: absolute;
+      text-align: left;
+      width: auto;
+      height: auto;
+      padding: 10px;
+      margin: 10px;
+      font: 12px;
+      background: white;
+      -webkit-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+      -moz-box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+      box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.8);
+      visibility: hidden;
+    }
+
+    rect {
+      stroke: white;
+      stroke-width: 1px;
+    }
+
+    /* For oligoset similarities matrix */
+    .axis text {
+      font: 10px sans-serif;
+    }
+
+    .axis line, .axis path {
+      fill: none;
+      stroke: #000;
+      shape-rendering: crispEdges;
+    }
+
+    .mask{
+      fill: white;
+    }
+    </style>
+  </head>
+  <body>
+    <div style="display:inline-block;" id="legend"></div>
+    <div style="display:inline-block; float:left" id="the_container"></div>
+  </body>
+
+  <script type="text/javascript">
+    var correlationMatrix = [
+        [1, 0.3, 0, 0.8, 0, 0.2, 1, 0.5, 0, 0.75],
+        [0.3, 1, 0.5, 0.2, 0.4, 0.3, 0.8, 0.1, 1, 0],
+        [0, 0.5, 1, 0.4, 0, 0.9, 0, 0.2, 1, 0.3],
+        [0.8, 0.2, 0.4, 1, 0.3, 0.4, 0.1, 1, 0.2, 0.9],
+        [0, 0.4, 0, 0.3, 1, 0.1, 0.4, 0, 0.6, 0.7],
+        [0.2, 0.3, 0.9, 0.4, 0.1, 1, 0, 0.1, 0.4, 0.1],
+        [1, 0.8, 0, 0.1, 0.4, 0, 1, 0.5, 0, 1],
+        [0.5, 0.1, 0.2, 1, 0.1, 0, 0.5, 1, 0, 0.4],
+        [0, 1, 1, 0.2, 0.6, 0.4, 0, 0, 1, 0.6],
+        [0.75, 0, 0.3, 0.9, 0.7, 0.1, 1, 0.4, 0.6, 1]
+    ];
+
+    var labels = ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8', '#9', '#10'];
+
+    function tooltip_constructer(d, i){
+  		var row_number = i % labels.length
+  		var column_number =  parseInt(i / labels.length)
+  		if(row_number>=column_number) return null
+  		return data[row_number][column_number] + ' (' + labelsData[column_number] + ' - ' + labelsData[row_number] + ')'
+  	}
+
+    Matrix({
+        container : '#the_container',
+        width: 500,
+        height: 500,
+        widthLegend: 100,
+        tooltip_canvas_selector: 'body',
+        tooltip_constructer: tooltip_constructer,
+        data      : correlationMatrix,
+        labels    : labels,
+        start_color : 'rgb(235, 245, 251)',
+        end_color : '#3498db'
+    })
+    masking(labels, 'white')
+  </script>
+</html>

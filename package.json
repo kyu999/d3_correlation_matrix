@@ -1,0 +1,16 @@
+{
+  "name": "d3_correlation_matrix",
+  "version": "0.0.1",
+  "description": "D3 Correlation Matrix",
+  "main": "d3.matrix.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kyu999/d3_correlation_matrix.git"
+  },
+  "author": "kyu999",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kyu999/d3_correlation_matrix/issues"
+  },
+  "homepage": "https://github.com/kyu999/d3_correlation_matrix"
+}
